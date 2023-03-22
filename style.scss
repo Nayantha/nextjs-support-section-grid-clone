@@ -1,0 +1,59 @@
+:root {
+  --foreground-color: 255, 255, 255;
+  --background-color: 0, 0, 0;
+  --accents-5: #888;
+}
+*, *::after, *::before{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+a {
+  color: rgb(var(--foreground-color));
+  text-decoration: none;
+}
+body {
+  --main-content-margin: 50px;
+  height: 100dvh;
+  height: 100vh;
+  background-color: rgb(var(--background-color));
+  display: grid;
+  grid-template-columns: var(--main-content-margin) 1fr var(--main-content-margin);
+  place-items: center;
+}
+section {
+  grid-column-start: 2;
+  grid-column-end: 2;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 10px;
+}
+.card {
+  --extra-sclaing-amount: 4px;
+  border-radius: 10px;
+  position: relative;
+  box-shadow: 0 0 0 1px transparent, 0 2px 4px transparent, 0 12px 24px transparent;
+  background-color: rgb(var(--background-color));
+  padding: 20px;
+  &::before {
+    position: absolute;
+    border-radius: inherit;
+    content: "";
+    inset: calc(var(--extra-sclaing-amount) / -2) 0 0 calc(var(--extra-sclaing-amount) / -2);
+    background: linear-gradient(to bottom right, rgba(var(--foreground-color), 1),rgba(var(--foreground-color), 0.8),rgba(var(--foreground-color), 0.4), rgba(var(--foreground-color), 0.3));
+    z-index: -1;
+    width: calc(100% + var(--extra-sclaing-amount));
+    height: calc(100% + var(--extra-sclaing-amount));
+    //background: radial-gradient(75% 75% at 25% 15%,#fff 0,hsla(0,0%,100%,.3) 100%);
+    //-webkit-mask: linear-gradient(#000,#000) content-box,linear-gradient(#000,#000);
+    //mask: linear-gradient(#000,#000) content-box,linear-gradient(#000,#000);
+    //-webkit-mask-composite: xor;
+    //mask-composite: exclude;
+  }
+  &.two-column {
+    grid-column: span 2;
+  }
+  &.three-column {
+    grid-column: span 3;
+  }
+}
